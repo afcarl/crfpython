@@ -8,14 +8,9 @@ import math
 # J feature functions.
 #####################################################
 
-a_templates = []
-b_templates = [TagSequence_Template]
 
 
-a_features = []
-b_features = []
 
-(a_features, b_features) = build_features(a_templates, b_templates)
 
 ###############################################
 #  take all a_templates, b_templates, return array of a featurefunction objects and b featurefunction objects
@@ -25,6 +20,7 @@ b_features = []
 def build_features(a_templates, b_templates):
 
     a_features = []
+    b_features = []
     for template in a_templates:
         for i in xrange(template.cardinality()):
             a_features.append(template(i))
@@ -33,12 +29,12 @@ def build_features(a_templates, b_templates):
         for i in xrange(template.cardinality()):
             b_features.append(template(i))
 
-
+    return (a_features, b_features)
 
 
 def j_to_ab(j):
 
-    a = int(math.ceil((j * 1.0) / (number_bs * 1.0 )))
+    a = int(math.floor((j * 1.0) / (number_bs * 1.0 )))
     b = j % number_bs
     return (a,b)
 
@@ -55,10 +51,26 @@ b_featurefunctions = []
 a_templates = []
 b_templates = []
 
-def feature_function(j, y, x_seq, i):
-    (a, b) = j_to_ab(j)
+class FeatureFunction:
 
-    return a_featurefunctions[a].evaluate(x,i) * b_featurefunctions[b].evaluate(y,i)
+    def __init__(self, a_features, b_features):
+        self.a_features = a_features
+        self.b_features = b_features
+
+    def cardinality(self):
+        return len(self.a_features) * len(self.b_features)
+
+    def evaluate(j, x, y, i):
+        (a, b) = j_to_ab(j)
+        yt = y[i]
+        if i == 0:
+            ybefore = "START"
+        else:
+            ybefore = y[i-1]
+
+        return self.a_features[a].evaluate(x,i) * b_features[b].evaluate(yt, ybefore,i)
+
+
 
 
 
