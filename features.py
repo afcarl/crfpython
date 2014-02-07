@@ -34,8 +34,12 @@ def build_features(a_templates, b_templates):
 
 def j_to_ab(j, num_a, num_b):
 
-    a = int(math.floor((j * 1.0) / (num_a * 1.0 )))
-    b = j % num_b
+    a = j % num_a
+    b = j / num_a
+
+    # print "num_a: ", num_a, "num_b: ", num_b
+    # print "a: ", a, "b: ", b
+
     return (a,b)
 
 
@@ -68,7 +72,12 @@ class FeatureFunction:
         else:
             ybefore = y[i-1]
 
-        return self.a_features[a].evaluate(x,i) ** self.b_features[b].evaluate(yt, ybefore,i)
+
+        # print "cardinality: ", self.cardinality()
+        # print "j: ", j, "a: ", a, "b: ", b
+        #print "a feature result",  self.a_features[a].evaluate(x,i), "b feature result", self.b_features[b].evaluate(yt, ybefore,i)
+
+        return self.a_features[a].evaluate(x,i) ** self.b_features[b].evaluate(yt, ybefore, i)
 
 
 

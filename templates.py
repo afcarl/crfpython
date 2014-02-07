@@ -15,7 +15,7 @@ class Template:
         return ""
 
 
-class TagSequence_Template(Template):
+class TagSequenceTemplate(Template):
 
     total_funcs = len(settings.tags) ** 2
     def __init__(self, index):
@@ -23,14 +23,15 @@ class TagSequence_Template(Template):
 
     @staticmethod
     def cardinality():
-        return TagSequence_Template.total_funcs
+        return TagSequenceTemplate.total_funcs
 
     def evaluate(self, yt, ybefore, loc):
     	return 1
 
+class IsWordTemplate(Template):
+    total_funcs=0
 
-
-class WordLength_Template:
+class WordLengthTemplate(Template):
     total_funcs = 20
 
     def __init__(self, index):
@@ -38,7 +39,7 @@ class WordLength_Template:
 
     @staticmethod
     def cardinality():
-        return WordLength_Template.total_funcs
+        return WordLengthTemplate.total_funcs
 
     def evaluate(self, x_sequence, i):
         return int(len(x_sequence[i]) == self.index )
