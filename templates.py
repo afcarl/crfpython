@@ -31,6 +31,8 @@ class TagSequenceTemplate(Template):
 class IsWordTemplate(Template):
     total_funcs=0
 
+    def __init__(self, index):
+        self.index = index
 
 class WordLengthTemplate(Template):
     total_funcs = 20
