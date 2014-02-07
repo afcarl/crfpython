@@ -31,6 +31,7 @@ class TagSequenceTemplate(Template):
 class IsWordTemplate(Template):
     total_funcs=0
 
+
 class WordLengthTemplate(Template):
     total_funcs = 20
 
