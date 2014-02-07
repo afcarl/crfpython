@@ -26,7 +26,8 @@ class TagSequence_Template(Template):
         return TagSequence_Template.total_funcs
 
     def evaluate(self, yt, ybefore, loc):
-    	return
+    	return 1
+
 
 
 class WordLength_Template:
@@ -39,7 +40,7 @@ class WordLength_Template:
     def cardinality():
         return WordLength_Template.total_funcs
 
-    def evaluate(self, x_sequence, loc):
-        return
+    def evaluate(self, x_sequence, i):
+        return int(len(x_sequence[i]) == self.index )
 
 

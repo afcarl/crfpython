@@ -32,10 +32,10 @@ def build_features(a_templates, b_templates):
     return (a_features, b_features)
 
 
-def j_to_ab(j):
+def j_to_ab(j, num_a, num_b):
 
-    a = int(math.floor((j * 1.0) / (number_bs * 1.0 )))
-    b = j % number_bs
+    a = int(math.floor((j * 1.0) / (num_a * 1.0 )))
+    b = j % num_b
     return (a,b)
 
 
@@ -60,15 +60,15 @@ class FeatureFunction:
     def cardinality(self):
         return len(self.a_features) * len(self.b_features)
 
-    def evaluate(j, x, y, i):
-        (a, b) = j_to_ab(j)
+    def evaluate(self, j, x, y, i):
+        (a, b) = j_to_ab(j, len(self.a_features), len(self.b_features))
         yt = y[i]
         if i == 0:
             ybefore = "START"
         else:
             ybefore = y[i-1]
 
-        return self.a_features[a].evaluate(x,i) * b_features[b].evaluate(yt, ybefore,i)
+        return self.a_features[a].evaluate(x,i) ** self.b_features[b].evaluate(yt, ybefore,i)
 
 
 

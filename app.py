@@ -19,3 +19,7 @@ print "b_features: ", b_features
 feature_function = FeatureFunction(a_features, b_features)
 
 print "Caridinality of FeatureFunction: " + str(feature_function.cardinality())
+
+
+for i in xrange(feature_function.cardinality()):
+    print feature_function.evaluate(1, settings.x_sample, settings.y_sample, 1)
