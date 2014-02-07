@@ -15,6 +15,7 @@ class Template:
         return ""
 
 
+
 class TagSequenceTemplate(Template):
 
     total_funcs = len(settings.tags) ** 2
