@@ -10,10 +10,8 @@ import math
 
 
 
-
-
 ###############################################
-#  take all a_templates, b_templates, return array of a featurefunction objects and b featurefunction objects
+#  buil_features takes all a_templates, b_templates, return array of a featurefunction objects and b featurefunction objects
 #  every a feature function object has an evaluate(x, i) function
 #  every b feature function object has an evaluate(yi, ybeforei, i) function
 ###############################################
